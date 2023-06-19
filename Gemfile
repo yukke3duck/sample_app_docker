@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'bcrypt',          '3.1.18'
 gem 'bootsnap',        '1.12.0', require: false
 gem 'bootstrap-sass',  '3.4.1'
 gem 'importmap-rails', '1.1.0'
