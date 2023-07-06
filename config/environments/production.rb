@@ -69,7 +69,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = smtp
+  config.action_mailer.delivery_method = :smtp
   host = 'sample-app-z9t2.onrender.com'
   config.action_mailer.default_url_options = { host: }
   ActionMailer::Base.smtp_settings = {
