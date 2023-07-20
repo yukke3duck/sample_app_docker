@@ -55,14 +55,6 @@ class UsersController < ApplicationController
   end
 
   # beforeフィルタ
-  # ログイン済ユーザーかどうか確認
-  def logged_in_user
-    return if logged_in?
-
-    store_location
-    flash[:danger] = 'Please log in.'
-    redirect_to login_url, status: :see_other
-  end
 
   # 正しいユーザーかどうか確認
   def correct_user
