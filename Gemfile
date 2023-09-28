@@ -21,7 +21,9 @@ gem 'will_paginate', '3.3.1'
 
 group :development, :test do
   gem 'debug', '1.5.0', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -32,9 +34,13 @@ group :test do
   gem 'capybara',                 '3.37.1'
   gem 'guard',                    '2.18.0'
   gem 'guard-minitest',           '2.4.6'
+  gem 'launchy'
   gem 'minitest',                 '5.15.0'
   gem 'minitest-reporters',       '1.5.0'
   gem 'rails-controller-testing', '1.0.5'
   gem 'selenium-webdriver',       '4.2.0'
-  gem 'webdrivers',               '5.0.0'
+  gem 'shoulda-matchers'
+  gem 'vcr'
+  gem 'webdrivers', '5.0.0'
+  gem 'webmock'
 end
