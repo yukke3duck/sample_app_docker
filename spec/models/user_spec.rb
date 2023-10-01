@@ -77,9 +77,6 @@ RSpec.describe User, type: :model do
   end
 
   it { expect(user.authenticated?(:remember, '')).to be false }
-  # it 'returns faluse for a use with nil digest' do
-  #   expect(user.authenticated?(:remember, '')).to be false
-  # end
 
   it 'is destroyed with associated microposts' do
     user.save
@@ -105,5 +102,38 @@ RSpec.describe User, type: :model do
     user.save
     user.follow(user)
     expect(user.following?(user)).to be false
+  end
+
+  describe 'see the feed' do
+    let(:unfollowed_user) { FactoryBot.create(:user) }
+    before do
+      user.save
+      user.follow(followed_user)
+
+      10.times.each do
+        FactoryBot.create(:micropost, user:)
+        FactoryBot.create(:micropost, user: followed_user)
+        FactoryBot.create(:micropost, user: unfollowed_user)
+      end
+    end
+
+    it 'see the post by following user' do
+      followed_user.microposts.each do |post_following|
+        expect(user.feed.include?(post_following)).to be true
+      end
+    end
+
+    it 'see the post by itself' do
+      user.microposts.each do |post_self|
+        expect(user.feed.include?(post_self)).to be true
+        expect(user.feed.distinct).to eq(user.feed)
+      end
+    end
+
+    it 'does not see the post by unfollowing' do
+      unfollowed_user.microposts.each do |post_unfollowed|
+        expect(user.feed.include?(post_unfollowed)).to be false
+      end
+    end
   end
 end
