@@ -26,7 +26,7 @@ RSpec.describe Micropost, type: :model do
     expect(micropost.errors[:content]).to include('is too long (maximum is 140 characters)')
   end
 
-  it 'does something' do
+  it 'is in ordder of most recent post' do
     30.times.each { FactoryBot.create(:micropost) }
     micropost = FactoryBot.create(:micropost, :most_recent)
     expect(micropost).to eq(Micropost.first)
